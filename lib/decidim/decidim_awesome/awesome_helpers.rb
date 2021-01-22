@@ -46,7 +46,11 @@ module Decidim
       end
 
       def version_prefix
-        "v#{Decidim.version[0..3]}"
+        version = "v#{Decidim.version[0..3]}"
+        if version == "v0.24"
+          version = "v0.23"
+        end
+        version
       end
     end
   end
