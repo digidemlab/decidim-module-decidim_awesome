@@ -17,12 +17,19 @@ cs:
         intergram_title_closed: Titulek uzavřeného chatu
         intergram_title_open: Titulek otevřeného chatu
         intergram_use_floating_button: Je-li zaškrtnuto, uzavřený chat je vždy tlačítko místo textu
+        scoped_styles: 'Vlastní styly číslo %{id}'
         use_markdown_editor: Použít Markdown editor namísto HTML editoru
       constraint:
         component_id: nebo konkrétně v
         component_manifest: Pouze v komponentách typu
         participatory_space_manifest: Použít na participační prostory typu
         participatory_space_slug: Pouze v
+      menu:
+        position: Pozice
+        raw_label: Popisek
+        target: Otevře se v
+        url: URL
+        visibility: Viditelnost
   decidim:
     admin:
       menu:
@@ -34,7 +41,7 @@ cs:
           global:
             announcement: Oznámení
             iframe: Kód Iframe
-            iframe_help: 'Zadejte kód jako html: <iframe width="100%" height="700" frameBorder="0" allowFullscreen src="..."></iframe>. Obsah bude sanitován z jiných HTML tagů. Pro vyplnění obrazovky použijte 100% šířku.'
+            iframe_help: 'Zadejte kód jako html: <iframe width="100%" height="700" frameBorder="0" allowFullscreen src="..."></iframe>. Obsah bude vylepšen z jiných HTML tagů. Pro vyplnění obrazovky použijte 100% šířku.'
             no_margins: Mezi iframe a zbytkem stránky nejsou žádné okraje
             viewport_width: Omezit maximální šířku na zobrazení aplikace
           step:
@@ -46,7 +53,15 @@ cs:
           global:
             announcement: Oznámení
             collapse: Začít se sbaleným menu
+            map_center: Střed mapy (zeměpisná šířka, zeměpisná délka)
+            map_center_help: 'Použijte desetinné body (ie: 41.38879, 2.15899). Nechte prázdné, aby se automaticky vešly všechny značky'
             map_height: Výška mapy (px)
+            map_zoom: Zvětšení (libovolné číslo mezi 0 a 18)
+            map_zoom_help: Použije se pouze v případě, že je definován střed mapy
+            menu_amendments: Zobrazit pozměňovací návrhy
+            menu_hashtags: Zobrazit vyhledávací menu Hasthag
+            menu_meetings: Zobrazit schůzky
+            truncate: Maximum znaků pro popisy vyskakovacích oken
           step:
             announcement: Oznámení
             show_accepted: Zobrazit přijaté návrhy
@@ -75,6 +90,12 @@ cs:
             delete: Smazat
             edit: Upravit
             title: 'Platí pouze v těchto případech:'
+          create_scoped_style:
+            error: Chyba při vytváření nového CSS boxu! %{error}
+            success: CSS box %{key} úspěšně vytvořen
+          destroy_scoped_style:
+            error: Chyba při odstraňování CSS boxu! %{error}
+            success: CSS box %{key} byl úspěšně odstraněn
           experimental: Experimentální možnosti
           form:
             help:
@@ -86,7 +107,13 @@ cs:
               drag_and_drop_supported: Při nahrávání obrázků je podporováno vložení přetažením. Obrázky budou nahrány na server a vloženy jako externí zdroje (nepoužívá base64 inline kódování).
               intergram_about: Intergram používá Telegram messenger pro zpracování widgetu live podpory v dolní části stránky.
               intergram_config: 'Pozvěte <a href="https://web.telegram.org/#/im?p=@IntergramBot">@Intergram bota</a> do vaší skupiny nebo začněte chatovat přímo. <a href="https://github.com/idoco/intergram#embed-intergram-in-your-website-with-these-2-simple-steps">+ info</a>'
+              scoped_styles: Vytvořte vlastní CSS aplikovaný pouze na určitých částech veřejného webu (použijte pro to editor omezení)
+              scoped_styles_variables: 'Můžete použít následující CSS proměnné pro nastavené barvy organizace:'
               use_markdown_editor: Toto nahradí WYSIWYG editor, místo toho použijte Markdown editor. Text bude vykreslen jako HTML na veřejných stránkách (text v databázi bude uložen jako text markdown)
+          form_styles:
+            new: Přidat nový CSS box
+            remove: Odstranit tento CSS box
+            sure_to_remove: Opravdu chcete zničit tento CSS box?
           rich_text_editor_in_public_views: 'POZNÁMKA: "Kompletní textový editor pro účastníky" je povolen, tato možnost nebude využita. Pro povolení obrázků v Návrzích používejte místo toho hacky editoru.'
           show:
             title: Vylepšení pro %{setting}
@@ -94,7 +121,7 @@ cs:
           system: Všude kromě participačních prostor
           update:
             error: Chyba při aktualizaci konfigurace! %{error}
-            success: Konfigurace byla úspěšně aktualizována!
+            success: Konfigurace byla úspěšně aktualizována
         constraints:
           create:
             error: Chyba při vytváření případu stavu
@@ -119,8 +146,44 @@ cs:
           checks: Systémová kompatibilita
           editors: Hack editoru
           livechat: Live Chat
+          menu_hacks: Vylepšení menu
           proposals: Návrhy hacků
+          styles: Vlastní styly
           surveys: Průzkumy a formuláře
+        menu_hacks:
+          create:
+            error: Chyba při vytváření položky menu! %{error}
+            success: Položka menu byla úspěšně vytvořena
+          destroy:
+            error: Chyba při odstraňování položky menu! %{error}
+            success: Položka menu byla úspěšně smazána
+          edit:
+            save: Uložit
+            title: Upravit položku menu
+          form:
+            label_help: Překlady nejsou automaticky rozpoznány, nezapomeňte vyplnit všechna pole!
+            target:
+              blank: Nové okno
+              self: Stejné okno
+            visibility:
+              default: Viditelný
+              hidden: Vždy skryto
+              logged: Viditelné pouze pro přihlášené uživatele
+              non_logged: Viditelné pouze pro nepřihlášené uživatele
+          index:
+            confirm_destroy: Opravdu chcete odstranit toto přizpůsobení?
+            edit: Upravit
+            new: Nová položka
+            remove: Odstranit přidání
+            remove_hack: Odstranit přizpůsobení
+            title: Hlavní menu
+          new:
+            save: Uložit
+            title: Nová položka menu
+          update:
+            error: Chyba při aktualizaci položky menu! %{error}
+            success: Položka menu byla úspěšne aktualizována
+          url_exists: Stejná adresa URL je již nakonfigurována, prosím upravte ji místo jejího vytvoření.
       config:
         intergram:
           auto_no_response: Zdá se, že právě teď nikdo není k dispozici odpovědět. Řekněte nám, jak vás můžeme kontaktovat, a co nejdříve se k vám vrátíme.
@@ -132,7 +195,7 @@ cs:
       editor_images:
         create:
           error: Chyba při nahrávání obrázku!
-          success: Obrázek byl úspěšně nahrán!
+          success: Obrázek byl úspěšně nahrán
       map_component:
         map:
           error:
@@ -153,5 +216,8 @@ cs:
           autosaved_success: Data uložena v místním úložišti
           categories: Kategorie
           drag_and_drop_image: Přidejte obrázky přetažením nebo vložením.
+          hashtags: Hashtagy
+          items: položky
           meetings: Schůzky
           proposals: Návrhy
+          select_deselect_all: Vybrat/odebrat vše

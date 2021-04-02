@@ -22,12 +22,19 @@ en:
         intergram_title_open: Opened chat title
         intergram_use_floating_button: If checked, the closed chat is always a button
           instead of a text
+        scoped_styles: 'Custom styles #%{id}'
         use_markdown_editor: Use a Markdown editor instead of the HTML editor
       constraint:
         component_id: or specifically in
         component_manifest: Only in components of type
         participatory_space_manifest: Apply to participatory spaces of type
         participatory_space_slug: Only in
+      menu:
+        position: Position
+        raw_label: Label
+        target: Opens in
+        url: URL
+        visibility: Visibility
   decidim:
     admin:
       menu:
@@ -54,7 +61,16 @@ en:
           global:
             announcement: Announcement
             collapse: Start with collapsed menu
+            map_center: Map center (Latitude, Longitude)
+            map_center_help: 'Use decimal points (ie: 41.38879, 2.15899). Leave it
+              empty to automatically fit all the markers'
             map_height: Map height (px)
+            map_zoom: Zoom (any number betwen 0 and 18)
+            map_zoom_help: Only applies if a map center is defined
+            menu_amendments: Show amendments
+            menu_hashtags: Show Hasthag search menu
+            menu_meetings: Show meetings
+            truncate: Maximum characters for popup descriptions
           step:
             announcement: Announcement
             show_accepted: Show accepted proposals
@@ -85,8 +101,16 @@ en:
             delete: Delete
             edit: Edit
             title: 'Applicable only in these cases:'
+          create_scoped_style:
+            error: Error creating a new CSS box! %{error}
+            success: CSS box %{key} created successfully
+          destroy_scoped_style:
+            error: Error removing CSS box! %{error}
+            success: CSS box %{key} removed successfully
           experimental: Experimental options
           form:
+            errors:
+              incorrect_css: 'CSS in box #%{key} is invalid'
             help:
               allow_images_in_full_editor: This will add an image uploader icon in
                 all the editors WYSIWYG with the full toolbar enabled.
@@ -110,9 +134,17 @@ en:
               intergram_config: Invite the <a href="https://web.telegram.org/#/im?p=@IntergramBot">@Intergram
                 bot</a> to your group or start a chat with it directly. <a href="https://github.com/idoco/intergram#embed-intergram-in-your-website-with-these-2-simple-steps">+
                 info</a>
+              scoped_styles: Create custom CSS that applies only in certain parts
+                of the public web (use the restrictions editor for that)
+              scoped_styles_variables: 'You can use the following CSS variables for
+                organization customized colors:'
               use_markdown_editor: This will substitute the Quill WYSIWYG editor,
                 use a Markdown editor instead. Text will be rendered as HTML in the
                 public pages (text in database will be saved as markdown text)
+          form_styles:
+            new: Add a new CSS box
+            remove: Remove this CSS box
+            sure_to_remove: Are you sure you want to destroy this CSS box?
           rich_text_editor_in_public_views: 'NOTE: "Rich text editor for participants"
             is enabled, this option won''t apply. Use the editors hacks instead to
             enable images in proposals.'
@@ -122,7 +154,7 @@ en:
           system: Everywhere except participatory spaces
           update:
             error: Error updating configuration! %{error}
-            success: Configuration updated successfully!
+            success: Configuration updated successfully
         constraints:
           create:
             error: Error creating condition case
@@ -147,8 +179,46 @@ en:
           checks: System compatibility
           editors: Editor hacks
           livechat: Live Chat
+          menu_hacks: Menu tweaks
           proposals: Proposals hacks
+          styles: Custom styles
           surveys: Surveys & forms
+        menu_hacks:
+          create:
+            error: Error creating menu item! %{error}
+            success: Menu item created successfully
+          destroy:
+            error: Error removing menu item! %{error}
+            success: Menu item removed successfully
+          edit:
+            save: Save
+            title: Edit menu item
+          form:
+            label_help: Translations aren't automatically detected, be sure to fill
+              in all the fields!
+            target:
+              blank: New window
+              self: Same window
+            visibility:
+              default: Visible
+              hidden: Always hidden
+              logged: Only visible for logged users
+              non_logged: Only visible for non-logged users
+          index:
+            confirm_destroy: Are you sure to remove this customization?
+            edit: Edit
+            new: New item
+            remove: Remove addition
+            remove_hack: Remove customization
+            title: Main menu
+          new:
+            save: Save
+            title: New menu item
+          update:
+            error: Error updating menu item! %{error}
+            success: Menu item updated successfully
+          url_exists: The same URL is already configured, please edit that instead
+            of creating it again.
       config:
         intergram:
           auto_no_response: It seems that no one is available to answer right now.
@@ -162,7 +232,7 @@ en:
       editor_images:
         create:
           error: Error uploading image!
-          success: Image uploaded successfully!
+          success: Image uploaded successfully
       map_component:
         map:
           error:
@@ -186,5 +256,8 @@ en:
           autosaved_success: Data saved in local storage
           categories: Categories
           drag_and_drop_image: Add images by dragging & dropping or pasting them.
+          hashtags: Hashtags
+          items: items
           meetings: Meetings
           proposals: Proposals
+          select_deselect_all: Select/deselect all

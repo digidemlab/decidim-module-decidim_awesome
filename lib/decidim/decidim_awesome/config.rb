@@ -79,6 +79,19 @@ module Decidim
         config[setting]
       end
 
+      # checks if some constraint blocks the validity fot the current context
+      def valid_in_context?(constraints)
+        # if no constraints defined, applies to everything
+        return true if constraints.blank?
+
+        # check if current context matches some constraint
+        constraints.detect do |constraint|
+          # if some setting is different, rejects
+          invalid = constraint.settings.detect { |key, val| context[key.to_sym].to_s != val.to_s }
+          invalid.blank?
+        end
+      end
+
       private
 
       def map_defaults
@@ -106,23 +119,9 @@ module Decidim
       def enabled_for_organization?(key)
         case key.to_sym
         when :allow_images_in_proposals
-          if @organization.respond_to? :rich_text_editor_in_public_views
-            return false if @organization.rich_text_editor_in_public_views
-          end
+          return false if @organization.rich_text_editor_in_public_views
         end
         true
-      end
-
-      def valid_in_context?(constraints)
-        # if no constraints defined, applies to everything
-        return true if constraints.blank?
-
-        # check if current context matches some constraint
-        constraints.detect do |constraint|
-          # if some setting is different, rejects
-          invalid = constraint.settings.detect { |key, val| context[key.to_sym] != val }
-          invalid.blank?
-        end
       end
     end
   end

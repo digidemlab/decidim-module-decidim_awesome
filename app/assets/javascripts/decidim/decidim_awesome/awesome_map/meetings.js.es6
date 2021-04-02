@@ -1,8 +1,9 @@
 // = require decidim/decidim_awesome/awesome_map/api_fetcher
 // = require decidim/decidim_awesome/awesome_map/categories
+// = require decidim/decidim_awesome/awesome_map/utilities
 
 ((exports) => {
-  const { getCategory } = exports.AwesomeMap;
+  const { getCategory, truncate } = exports.AwesomeMap;
   const query = `query ($id: ID!, $after: String!) {
     component(id: $id) {
         id
@@ -59,7 +60,7 @@
   const MeetingIcon = L.DivIcon.SVGIcon.extend({
     options: {
       fillColor: "#ef604d",
-      iconSize: {x: 300, y:150},
+      iconSize: { x: 300, y: 150 },
       opacity: 0
     },
     _createPathDescription: function() {
@@ -93,14 +94,14 @@
     });
 
     element.title.translation = ApiFetcher.findTranslation(element.title.translations);
-    element.description.translation = ApiFetcher.findTranslation(element.description.translations).replace(/\n/g, "<br>");;
+    element.description.translation = truncate(ApiFetcher.findTranslation(element.description.translations)).replace(/\n/g, "<br>");
     element.location.translation = ApiFetcher.findTranslation(element.location.translations);
     element.locationHints.translation = ApiFetcher.findTranslation(element.locationHints.translations);
     callback(element, marker);
   };
 
   const fetchMeetings = (component, after, callback, finalCall = () => {}) => {
-    
+
     const variables = {
       "id": component.id,
       "after": after
@@ -110,7 +111,7 @@
       if(result) {
         result.component.meetings.edges.forEach((element) => {
           if(!element.node) return;
-          
+
           if(element.node.coordinates) {
             element.node.link = component.url + '/meetings/' + element.node.id;
             createMarker(element.node, callback);

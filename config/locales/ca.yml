@@ -17,12 +17,19 @@ ca:
         intergram_title_closed: Títol del xat tancat
         intergram_title_open: Títol del xat obert
         intergram_use_floating_button: Si està marcat, el xat tancat és sempre un botó en lloc d'un text
+        scoped_styles: 'Estils personalitzats #%{id}'
         use_markdown_editor: Fes servir l'editor Markdown en comptes de l'editor HTML
       constraint:
         component_id: o específicament a
         component_manifest: Només en components de tipus
         participatory_space_manifest: Aplica-ho a espais participatius de tipus
         participatory_space_slug: Només a
+      menu:
+        position: Posició
+        raw_label: Etiqueta
+        target: Obre a
+        url: URL
+        visibility: Visibilitat
   decidim:
     admin:
       menu:
@@ -46,7 +53,15 @@ ca:
           global:
             announcement: Anunci
             collapse: Inicia amb el menú col·lapsat
+            map_center: Centre del mapa (Latitud, Longitud)
+            map_center_help: 'Utilitza un punt per marcar els decimals (pe: 41.38879, 2.15899). Deixa aquest camp buit per incloure automàticament tots els marcadors'
             map_height: Alçada del mapa (px)
+            map_zoom: Zoom (qualsevol nombre entre 0 i 18)
+            map_zoom_help: Només s’aplica si es defineix el punt central del mapa
+            menu_amendments: Mostrar esmenes
+            menu_hashtags: Mostrar el menú de cerca per hashtag
+            menu_meetings: Mostrar trobades
+            truncate: Nombre màxim de caràcters per les descripcions emergents
           step:
             announcement: Anunci
             show_accepted: Mostra les propostes acceptades
@@ -75,6 +90,12 @@ ca:
             delete: Esborra
             edit: Edita
             title: 'S''aplica només en aquests casos:'
+          create_scoped_style:
+            error: Error en crear una nova caixa CSS! %{error}
+            success: Caixa CSS %{key} creada correctament
+          destroy_scoped_style:
+            error: Error en eliminar una caixa CSS! %{error}
+            success: Caixa CSS %{key} eliminada correctament
           experimental: Opcions experimentals
           form:
             help:
@@ -86,7 +107,13 @@ ca:
               drag_and_drop_supported: Quan es pugin imatges, es pot fer a través del mètode de "arrossegar i deixar anar". Les imatges seran pujades al servidor i inserides com recursos externs (no es fa servir codificació en línia base64).
               intergram_about: Intergram utilitza el Telegram Messenger per gestionar un widget de xat en viu de suport incrustat a la part inferior de la pàgina.
               intergram_config: 'Convida a la <a href="https://web.telegram.org/#/im?p=@IntergramBot">@Intergram bot</a> al teu grup o comença un xat amb ella directament. <a href="https://github.com/idoco/intergram#embed-intergram-in-your-website-with-these-2-simple-steps">+ info</a>'
+              scoped_styles: Crea CSS personalitzats que només s'apliquin a determinades parts de la web pública (per fer-ho, utilitza l'editor de restriccions)
+              scoped_styles_variables: 'Pots fer servir les següents variables CSS pels colors personalitzats de l''organització:'
               use_markdown_editor: Això substituirà l'editor HTML (Quill), en el seu lloc s'utilitzarà un editor Markdown tant a l'admin com a la pàgina pública per processar el text (a la base de dades el text es desarà com a markdown)
+          form_styles:
+            new: Afegeix una nova caixa CSS
+            remove: Elimina aquesta caixa CSS
+            sure_to_remove: Estàs segura que vols eliminar aquesta caixa CSS?
           rich_text_editor_in_public_views: 'NOTA: "Editor de text enriquit per participants" està habilitat a la configuració general, aquesta opció no aplicarà. Feu servir les modificacions d''editor general per afegir imatges a les propostes.'
           show:
             title: Modificacions per %{setting}
@@ -94,7 +121,7 @@ ca:
           system: A tot arreu excepte espais participatius
           update:
             error: Error actualitzant la configuració! %{error}
-            success: Configuració actualitzada correctament!
+            success: Configuració actualitzada correctament
         constraints:
           create:
             error: Error creant una nova restricció
@@ -119,8 +146,44 @@ ca:
           checks: Compatibilitat de sistema
           editors: Modificacions als editors
           livechat: Xat en directe
+          menu_hacks: Retocs al menú
           proposals: Modificacions a propostes
+          styles: Estils personalitzats
           surveys: Formularis i enquestes
+        menu_hacks:
+          create:
+            error: 'Error en crear un nou ítem de menú: %{error}'
+            success: Ítem de menú creat correctament
+          destroy:
+            error: 'Error en eliminar l''ítem de menú: %{error}'
+            success: Ítem de menú eliminat correctament
+          edit:
+            save: Desar
+            title: Editar ítem de menú
+          form:
+            label_help: Les traduccions no es detecten automàticament, asegura't de completar tots els camps!
+            target:
+              blank: Nova finestra
+              self: La mateixa finestra
+            visibility:
+              default: Visible
+              hidden: Sempre ocult
+              logged: Només visible per usuàries loguejades
+              non_logged: Només visible per usuàries no loguejades
+          index:
+            confirm_destroy: Estàs segura que vols eliminar aquest retoc?
+            edit: Editar
+            new: Nou ítem
+            remove: Eliminar addició
+            remove_hack: Eliminar retoc
+            title: Menú principal
+          new:
+            save: Desar
+            title: Nou ítem de menú
+          update:
+            error: 'Error en actualitzar l''ítem de menú: %{error}'
+            success: Ítem de menú actualitzat correctament
+          url_exists: Aquesta URL ha estat configurada en un altre ítem de menú, si us plau edita'l en comptes de crear-ne un de nou.
       config:
         intergram:
           auto_no_response: Sembla que no hi ha ningú disponible per a respondre en aquest moment. Si us plau, indica'ns com et podem contactar i ens comunicarem amb tu tan aviat com ens sigui possible.
@@ -132,7 +195,7 @@ ca:
       editor_images:
         create:
           error: Error en pujar la imatge!
-          success: La imatge s'ha pujat correctament!
+          success: Imatge pujada correctament
       map_component:
         map:
           error:
@@ -153,5 +216,8 @@ ca:
           autosaved_success: Dades desades a l'emmagatzematge local
           categories: Categories
           drag_and_drop_image: Afegeix imatges "arrastrant i deixant anar" o bé enganxant-les.
+          hashtags: Hashtags
+          items: elements
           meetings: Trobades
           proposals: Propostes
+          select_deselect_all: Seleccionar/desseleccionar tot

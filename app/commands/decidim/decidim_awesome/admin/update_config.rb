@@ -18,12 +18,15 @@ module Decidim
         #
         # Returns nothing.
         def call
-          return broadcast(:invalid) if form.invalid?
+          if form.invalid?
+            message = form.errors[:scoped_styles].join("; ") if @form.errors[:scoped_styles].any?
+            return broadcast(:invalid, message, form.errors)
+          end
 
           begin
             form.attributes.each do |key, val|
               # ignore nil attributes (must specifically be set to false if necessary)
-              next if val.nil?
+              next unless form.valid_keys.include?(key)
 
               setting = AwesomeConfig.find_or_initialize_by(var: key, organization: form.current_organization)
 
